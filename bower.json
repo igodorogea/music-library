@@ -1,0 +1,10 @@
+{
+  "name": "music-library",
+  "version":"1.0.0",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-resource": "^1.6.1",
+    "angular-ui-router": "ui-router#^0.3.2",
+    "angular-material": "^1.1.1"
+  }
+}
