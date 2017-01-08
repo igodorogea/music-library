@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('musicLibrary',
   [
     'ngAnimate',
@@ -7,8 +5,21 @@ angular.module('musicLibrary',
     'ngAria',
     'ngResource',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'angular-duration-format',
+    'musicLibrary.artists',
+    'musicLibrary.albums',
+    'musicLibrary.songs'
   ])
-  // .config(config)
-  // .config(routerConfig)
-  // .run(runBlock);
+  .config(routerConfig)
+
+function routerConfig($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('home', {
+      url: '/'
+    })
+
+  $urlRouterProvider.otherwise('/')
+}
+
+routerConfig.$inject = ['$stateProvider', '$urlRouterProvider']

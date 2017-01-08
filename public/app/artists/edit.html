@@ -1,0 +1,22 @@
+<h1>Edit artist</h1>
+
+<form name="artistForm" role="form" ng-submit="artistForm.$dirty && vm.update(vm.artist)" ng-init="vm.initEdit()">
+    <div>
+        <md-input-container>
+            <label>Name</label>
+            <input name="name" ng-model="vm.artist.name" required>
+            <div ng-messages="artistForm.name.$error">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div>
+        <md-input-container>
+            <label>Genre</label>
+            <input name="genre" ng-model="vm.artist.genre">
+        </md-input-container>
+    </div>
+
+    <md-button type="submit" class="md-raised md-primary" ng-disabled="artistForm.$pristine">Update</md-button>
+</form>

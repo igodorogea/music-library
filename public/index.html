@@ -6,6 +6,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="assets/stylesheets/material-icons.css">
     <link rel="stylesheet" href="assets/bower_components/angular/angular-csp.css">
     <link rel="stylesheet" href="assets/bower_components/angular-material/angular-material.css">
 </head>
@@ -15,8 +17,28 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ui-view="" layout="row" layout-fill="">
-    Loading...
+<div layout="column" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="center center" flex layout="row">
+            <div flex-gt-sm="80" flex-gt-md="70" flex layout="row">
+                <span>Music library</span>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <div layout-align="center center" flex layout="row">
+            <div flex-gt-sm="80" flex-gt-md="70" flex layout="row">
+                <md-nav-item md-nav-sref="artists" name="artists">Artists</md-nav-item>
+                <md-nav-item md-nav-sref="albums" name="albums">Albums</md-nav-item>
+                <md-nav-item md-nav-sref="songs" name="songs">Songs</md-nav-item>
+            </div>
+        </div>
+    </md-nav-bar>
+
+    <div class="md-padding" layout-align="center center" flex md-scroll-y layout="row">
+        <md-content class="md-padding md-whiteframe-2dp" flex-gt-sm="80" flex-gt-md="70" flex ui-view></md-content>
+    </div>
 </div>
 
 <script src="assets/bower_components/angular/angular.js"></script>
@@ -26,7 +48,11 @@
 <script src="assets/bower_components/angular-resource/angular-resource.js"></script>
 <script src="assets/bower_components/angular-material/angular-material.js"></script>
 <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="assets/bower_components/angular-duration-format/dist/angular-duration-format.js"></script>
 
+<script src="app/artists/artists.module.js"></script>
+<script src="app/albums/albums.module.js"></script>
+<script src="app/songs/songs.module.js"></script>
 <script src="app/index.module.js"></script>
 </body>
 </html>

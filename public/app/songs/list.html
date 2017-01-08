@@ -1,0 +1,36 @@
+<h1>Songs</h1>
+
+<md-button ui-sref="songs_add" class="md-fab md-fab-top-right md-accent md-hue-2" aria-label="Add song">
+    <md-tooltip md-direction="top">Add song</md-tooltip>
+    <md-icon>add</md-icon>
+</md-button>
+
+<md-list ng-cloak ng-init="vm.initList()">
+    <md-list-item class="md-2-line" ng-repeat="song in vm.songs">
+        <div class="md-list-item-text" layout="row">
+            <div flex>
+                <h3>{{song.title}}</h3>
+                <p>{{song.duration*1000 | duration:'mm:ss'}}</p>
+            </div>
+
+            <div flex>
+                <h3>{{song.album.title}}</h3>
+                <p>{{song.album.year}}</p>
+            </div>
+
+            <div flex>
+                <h3>{{song.album.artist.name}}</h3>
+            </div>
+        </div>
+        <md-button class="md-secondary md-primary md-icon-button" ui-sref="songs_edit({id: song.id})"
+                   aria-label="Edit song">
+            <md-tooltip md-direction="top">Edit song</md-tooltip>
+            <md-icon>edit</md-icon>
+        </md-button>
+        <md-button class="md-secondary md-warn md-icon-button" ng-click="vm.remove(song.id)" aria-label="Remove song">
+            <md-tooltip md-direction="top">Remove song</md-tooltip>
+            <md-icon>delete</md-icon>
+        </md-button>
+        <md-divider></md-divider>
+    </md-list-item>
+</md-list>

@@ -1,0 +1,39 @@
+<h1>Edit song</h1>
+
+<form name="songForm" role="form" ng-submit="vm.update(vm.song, songForm)" ng-init="vm.initEdit()">
+    <div>
+        <md-input-container>
+            <label>Album</label>
+            <md-select name="albumId" ng-model="vm.song.albumId" required>
+                <md-option ng-repeat="album in vm.albums" ng-value="album.id">
+                    {{album.title}}
+                </md-option>
+            </md-select>
+            <div ng-messages="songForm.albumId.$error">
+                <div ng-message="required">Album is required.</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div>
+        <md-input-container>
+            <label>Title</label>
+            <input name="title" ng-model="vm.song.title" required>
+            <div ng-messages="songForm.title.$error">
+                <div ng-message="required">Title is required.</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <div>
+        <md-input-container>
+            <label>Duration</label>
+            <input name="duration" ng-model="vm.song.duration" required>
+            <div ng-messages="songForm.duration.$error">
+                <div ng-message="required">Year is required.</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <md-button type="submit" class="md-raised md-primary" ng-disabled="songForm.$pristine">Update</md-button>
+</form>

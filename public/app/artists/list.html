@@ -1,0 +1,24 @@
+<h1>Artists</h1>
+
+<md-button ui-sref="artists_add" class="md-fab md-fab-top-right md-accent md-hue-2" aria-label="Add artist">
+    <md-tooltip md-direction="top">Add artist</md-tooltip>
+    <md-icon>add</md-icon>
+</md-button>
+
+<md-list ng-cloak ng-init="vm.initList()">
+    <md-list-item class="md-2-line" ng-repeat="artist in vm.artists">
+        <div class="md-list-item-text">
+            <h3>{{artist.name}}</h3>
+            <p>{{artist.genre}}</p>
+        </div>
+        <md-button class="md-secondary md-primary md-icon-button" ui-sref="artists_edit({id: artist.id})" aria-label="Edit artist">
+            <md-tooltip md-direction="top">Edit artist</md-tooltip>
+            <md-icon>edit</md-icon>
+        </md-button>
+        <md-button class="md-secondary md-warn md-icon-button" ng-click="vm.remove(artist.id)" aria-label="Remove artist">
+            <md-tooltip md-direction="top">Remove artist</md-tooltip>
+            <md-icon>delete</md-icon>
+        </md-button>
+        <md-divider></md-divider>
+    </md-list-item>
+</md-list>
