@@ -16,7 +16,8 @@ angular.module('musicLibrary',
 function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
-      url: '/'
+      url: '/',
+      template: '<h1>Welcome</h1>'
     })
 
   $urlRouterProvider.otherwise('/')

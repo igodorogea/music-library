@@ -5,7 +5,7 @@ const Artist = require('./models').Artist
 const Album = require('./models').Album
 const Song = require('./models').Song
 
-const port = '3000'
+const port = process.env.PORT || '3000'
 app.set('port', port)
 
 const server = http.createServer(app)
@@ -15,7 +15,7 @@ sequelize
   // .then(() => createDummyData())
   .then(function () {
     server.listen(port)
-    console.log('Listening on 3000...')
+    console.log('Listening on ' + port + '...')
   })
   .catch(function (error) {
     console.warn(error)
