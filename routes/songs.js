@@ -1,8 +1,10 @@
 const router = require('express').Router()
-const {Song, Album, Artist} = require('../models')
+const Artist = require('../models').Artist
+const Album = require('../models').Album
+const Song = require('../models').Song
 
 // list all songs
-router.get('/', (req, res) => {
+router.get('/', function (req, res) {
   Song
     .findAll({
       attributes: ['id', 'title', 'duration'], include: [{
@@ -14,65 +16,65 @@ router.get('/', (req, res) => {
         }
       }]
     })
-    .then((songs) => {
+    .then(function (songs) {
       res.json(songs)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('list all songs failed')
     })
 })
 
 // show song
-router.get('/:id', (req, res) => {
+router.get('/:id', function (req, res) {
   Song
     .findById(req.params.id, {attributes: ['id', 'title', 'duration', 'albumId']})
-    .then((song) => {
+    .then(function (song) {
       res.json(song)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('show song failed')
     })
 })
 
 // create song
-router.post('/', (req, res) => {
+router.post('/', function (req, res) {
   Song
     .create(req.body)
-    .then((song) => {
+    .then(function (song) {
       res.location(req.baseUrl + '/' + song.get('id'))
       res.status(201).json(song)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('create song failed')
     })
 })
 
 // update song
-router.put('/:id', (req, res) => {
+router.put('/:id', function (req, res) {
   Song
     .findById(req.params.id)
-    .then((song) => song.updateAttributes(req.body))
-    .then((song) => {
+    .then(function (song) {return song.updateAttributes(req.body)})
+    .then(function (song) {
       res.status(201).json(song)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('update song failed')
     })
 })
 
 // delete song
-router.delete('/:id', (req, res) => {
+router.delete('/:id', function (req, res) {
   Song
     .findById(req.params.id)
-    .then((song) => song.destroy())
-    .then(() => {
+    .then(function (song) {return song.destroy()})
+    .then(function () {
       res.sendStatus(204)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('delete song failed')
     })

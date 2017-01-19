@@ -1,21 +1,22 @@
 const router = require('express').Router()
-const {Artist, Album} = require('../models')
+const Artist = require('../models').Artist
+const Album = require('../models').Album
 
 // list all artists
-router.get('/', (req, res) => {
+router.get('/', function (req, res) {
   Artist
     .findAll({attributes: ['id', 'name', 'genre']})
-    .then((artists) => {
+    .then(function (artists) {
       res.json(artists)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('list all artists failed')
     })
 })
 
 // show artist
-router.get('/:id', (req, res) => {
+router.get('/:id', function (req, res) {
   Artist
     .findById(req.params.id, {
       attributes: ['id', 'name', 'genre'],
@@ -24,52 +25,52 @@ router.get('/:id', (req, res) => {
         attributes: ['id', 'title', 'year']
       }]
     })
-    .then((artist) => {
+    .then(function (artist) {
       res.json(artist)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('show artist failed')
     })
 })
 
 // create artist
-router.post('/', (req, res) => {
+router.post('/', function (req, res) {
   Artist
     .create(req.body)
-    .then((artist) => {
+    .then(function (artist) {
       res.location(req.baseUrl + '/' + artist.get('id'))
       res.status(201).json(artist)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('create artist failed')
     })
 })
 
 // update artist
-router.put('/:id', (req, res) => {
+router.put('/:id', function (req, res) {
   Artist
     .findById(req.params.id)
-    .then((artist) => artist.updateAttributes(req.body))
-    .then((artist) => {
+    .then(function (artist) {return artist.updateAttributes(req.body)})
+    .then(function (artist) {
       res.status(201).json(artist)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('update artist failed')
     })
 })
 
 // delete artist
-router.delete('/:id', (req, res) => {
+router.delete('/:id', function (req, res) {
   Artist
     .findById(req.params.id)
-    .then((artist) => artist.destroy())
-    .then(() => {
+    .then(function (artist) {return artist.destroy()})
+    .then(function () {
       res.sendStatus(204)
     })
-    .catch((error) => {
+    .catch(function (error) {
       console.warn(error)
       res.status(500).send('delete artist failed')
     })
