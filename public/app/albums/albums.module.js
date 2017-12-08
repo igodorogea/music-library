@@ -1,4 +1,5 @@
 ;(function () {
+  /* global angular */
   angular.module('musicLibrary.albums', [])
     .config(routerConfig)
 

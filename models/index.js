@@ -5,7 +5,7 @@ const Sequelize = require('sequelize')
  * https://github.com/sequelize/express-example
  */
 
-const models = {};
+const models = {}
 
 const sequelize = new Sequelize('music-library', null, null, {
   dialect: 'sqlite',

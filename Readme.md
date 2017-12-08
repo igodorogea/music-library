@@ -15,8 +15,7 @@
 ## Usage
 
 1. `npm install`
-2. `./node_modules/.bin/bower install`
-3. `npm start`
+2. `npm start`
 
 ## Entities
 
